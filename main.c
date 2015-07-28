@@ -196,14 +196,15 @@ int main(int argc, char **argv) {
 			}
 			tty_echo_off(&vt);
 		} else {
-			prompt(vt.ios, "\nPress [Enter] to unlock.\n");
+			prompt(vt.ios, "\n");
 		}
 
-		prompt(vt.ios, "%s's password: ", as->name);
+		/* prompt(vt.ios, "%s's password: ", as->name); */
+		prompt(vt.ios, ": ");
 		auth = authenticate(as, buf);
 		memset(buf, 0, sizeof(buf));
 		if (!auth) {
-			fprintf(vt.ios, "\nAuthentication failed\n");
+			fprintf(vt.ios, "\n\n");
 			sleep(AUTH_FAIL_TIMEOUT);
 		}
 	}
